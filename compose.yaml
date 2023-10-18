@@ -26,7 +26,7 @@ services:
     image: haolin926/getting-started
     command: sh -c "yarn install && yarn run dev"
     ports:
-      - 80:3000
+      - 8080:3000
     working_dir: /app
     volumes:
       - .:/app:ro
