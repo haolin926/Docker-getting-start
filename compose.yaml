@@ -21,7 +21,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: todos
-  app:
+  app02:
     container_name: read_only-App
     image: haolin926/getting-started
     command: sh -c "yarn install && yarn run dev"
