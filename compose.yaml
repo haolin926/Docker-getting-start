@@ -1,37 +1,16 @@
 services:
   app:
+    container_name: my_node_app
     image: node:18-alpine
-    command: sh -c "yarn install && yarn run dev"
     ports:
-      - 80:3000
-    working_dir: /app
-    volumes:
-      - ./:/app:ro
+      - 80:3000  
     environment:
       MYSQL_HOST: mysql
       MYSQL_USER: root
       MYSQL_PASSWORD: secret
       MYSQL_DB: todos
-  mysql:
-    image: mysql:8.0
-    volumes:
-      - todo-mysql-data:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=secret
-      - MYSQL_DATABASE=todos
+    networks:
+      - todo-app  # Connect to the same network as MySQL
 
-  app2:
-    image: node:18-alpine
-    command: sh -c "yarn install && yarn run dev"
-    ports:
-      - 8080:3000
-    working_dir: /app
-    volumes:
-      - ./:/app:ro
-    environment:
-      MYSQL_HOST: mysql
-      MYSQL_USER: root
-      MYSQL_PASSWORD: secret
-      MYSQL_DB: todos
-volumes:
-  todo-mysql-data:
+networks:
+  mynetwork:
