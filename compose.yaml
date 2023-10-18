@@ -1,12 +1,13 @@
 services:
   app:
-    image: node:18-alpine
+    container_name: read_write
+    image: haolin926/getting-started
     command: sh -c "yarn install && yarn run dev"
     ports:
-      - 127.0.0.1:80:3000
+      - 80:3000
     working_dir: /app
     volumes:
-      - ./:/app
+      - .:/app
     environment:
       MYSQL_HOST: mysql
       MYSQL_USER: root
@@ -16,10 +17,23 @@ services:
   mysql:
     image: mysql:8.0
     volumes:
-      - todo-mysql-data:/var/lib/mysql:ro
+      - todo-mysql-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: todos
-
+  app:
+    container_name: read_only-App
+    image: haolin926/getting-started
+    command: sh -c "yarn install && yarn run dev"
+    ports:
+      - 80:3000
+    working_dir: /app
+    volumes:
+      - .:/app:ro
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
+      MYSQL_DB: todos
 volumes:
   todo-mysql-data:
