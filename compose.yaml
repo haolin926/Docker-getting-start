@@ -24,8 +24,8 @@ services:
 
     environment:
       MYSQL_HOST: mysql
-      MYSQL_USER: readonly
-      MYSQL_PASSWORD: readonly_secret
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
       MYSQL_DB: todos
     volumes:
       - todo-mysql-data:/var/lib/mysql:ro
