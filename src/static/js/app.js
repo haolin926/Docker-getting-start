@@ -98,6 +98,7 @@ function AddItemForm({ onNewItem }) {
                     onChange={e => setNewItem(e.target.value)}
                     type="text"
                     placeholder="New Item"
+                    disabled={true}
                     aria-describedby="basic-addon1"
                 />
                 <InputGroup.Append>
@@ -146,6 +147,7 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
                         size="sm"
                         variant="link"
                         onClick={toggleCompletion}
+                        disabled={true}
                         aria-label={
                             item.completed
                                 ? 'Mark item as incomplete'
@@ -167,6 +169,7 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
                         size="sm"
                         variant="link"
                         onClick={removeItem}
+                        disabled={true}
                         aria-label="Remove Item"
                     >
                         <i className="fa fa-trash text-danger" />
